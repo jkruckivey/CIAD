@@ -6,11 +6,69 @@
     <title>Simple Agency Family Tree</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Agency tree specific styles aligned with styles.css patterns */
+        /* Matching styles.css structure and patterns */
+        .header {
+            background: #2d3748;
+            padding: 24px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            background: #10b981;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .header-text p {
+            color: #a0aec0;
+            font-size: 14px;
+            margin: 4px 0 0 0;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Main content using styles.css content-section pattern */
+        .main-card {
+            background: white;
+            padding: 24px;
+            margin: 40px 0;
+        }
+
+        /* Tree structure using styles.css card patterns */
         .tree-structure {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 32px;
             align-items: center;
             margin: 40px 0;
         }
@@ -18,64 +76,71 @@
         .level {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 16px;
             flex-wrap: wrap;
             width: 100%;
         }
 
+        /* Agency boxes styled like question-container components */
         .agency-box {
             background: white;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
             text-align: center;
             min-width: 200px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
-            cursor: text;
-            font-size: 15px;
+            cursor: pointer;
+            font-size: 14px;
             font-weight: 500;
             line-height: 1.4;
+            color: #2d3748;
         }
 
         .agency-box:hover {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-            border-color: #10b981;
+        }
+
+        .agency-box:focus {
+            outline: 2px solid #3182ce;
+            outline-offset: 2px;
         }
 
         .agency-box[contenteditable="true"]:focus {
-            outline: none;
-            border-color: #10b981;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: 2px solid #3182ce;
+            outline-offset: 2px;
+            border-color: #3182ce;
         }
 
-        /* Agency levels using greens and grays */
+        /* Agency levels using styles.css color scheme */
         .holding-company {
             background: #2d3748;
             color: white;
             font-size: 16px;
             font-weight: 600;
             border: 1px solid #2d3748;
-            min-width: 300px;
+            min-width: 280px;
         }
 
         .holding-company:hover {
             background: #4a5568;
             border-color: #4a5568;
+            box-shadow: 0 4px 12px rgba(45, 55, 72, 0.2);
         }
 
         .network-agency {
-            background: #10b981;
+            background: #3182ce;
             color: white;
             font-weight: 600;
-            border: 1px solid #10b981;
+            border: 1px solid #3182ce;
         }
 
         .network-agency:hover {
-            background: #059669;
-            border-color: #059669;
+            background: #2c5aa0;
+            border-color: #2c5aa0;
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.2);
         }
 
         .specialized-agency {
@@ -87,23 +152,25 @@
         .specialized-agency:hover {
             background: #4b5563;
             border-color: #4b5563;
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.2);
         }
 
         .boutique-agency {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+            background: #f7fafc;
+            color: #2d3748;
+            border: 1px solid #e2e8f0;
         }
 
         .boutique-agency:hover {
-            background: #a7f3d0;
-            border-color: #6ee7b7;
+            background: #edf2f7;
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .connection-line {
             width: 2px;
-            height: 30px;
-            background: #d1d5db;
+            height: 24px;
+            background: #e2e8f0;
             margin: 0 auto;
         }
 
@@ -113,12 +180,12 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.025em;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
             width: 100%;
         }
 
-        /* Use existing styles.css patterns for legend */
+        /* Legend using quiz-section pattern */
         .simple-legend {
             background: #f8f9fa;
             border-radius: 12px;
@@ -127,10 +194,17 @@
             border: 1px solid #e2e8f0;
         }
 
+        .simple-legend h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0 0 20px 0;
+        }
+
         .legend-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
+            gap: 12px;
         }
 
         .legend-item {
@@ -138,85 +212,104 @@
             align-items: center;
             font-size: 14px;
             color: #4a5568;
-            line-height: 1.5;
+            line-height: 1.4;
+            padding: 8px 0;
         }
 
         .legend-color {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 4px;
             margin-right: 12px;
             flex-shrink: 0;
         }
 
         .holding-color { background: #2d3748; }
-        .network-color { background: #10b981; }
+        .network-color { background: #3182ce; }
         .specialized-color { background: #6b7280; }
-        .boutique-color { background: #d1fae5; border: 1px solid #a7f3d0; }
+        .boutique-color { background: #f7fafc; border: 1px solid #e2e8f0; }
 
-        /* Align info boxes with styles.css key-themes pattern */
+        /* Info boxes using styles.css explanation patterns */
         .intro-box {
-            background: #f0f9ff;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 12px;
             margin: 24px 0;
-            border-left: 4px solid #0ea5e9;
+            border-left: 4px solid #10b981;
         }
 
-        .intro-box strong {
-            color: #0c4a6e;
-            display: block;
-            margin-bottom: 12px;
+        .intro-box h3 {
+            color: #2d3748;
+            font-size: 16px;
             font-weight: 600;
+            margin: 0 0 12px 0;
         }
 
         .intro-box p {
-            color: #475569;
-            margin-bottom: 0;
-            line-height: 1.6;
+            color: #4a5568;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
         }
 
-        /* Align instructions with styles.css assessment-section pattern */
         .instructions-box {
-            background: #fffbeb;
-            border: 1px solid #fbbf24;
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 32px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
         }
 
         .instructions-box h3 {
-            color: #92400e;
-            margin-top: 0;
-            margin-bottom: 16px;
-            font-size: 18px;
+            color: #2d3748;
+            font-size: 16px;
             font-weight: 600;
+            margin: 0 0 12px 0;
         }
 
         .instructions-box p {
-            color: #78350f;
-            margin-bottom: 0;
+            color: #4a5568;
+            font-size: 14px;
+            margin: 0;
             line-height: 1.5;
         }
 
         @media (max-width: 768px) {
-            .agency-box {
-                min-width: 150px;
+            .header-content {
+                padding: 0 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .main-card {
                 padding: 16px;
-                font-size: 14px;
+                margin: 20px 0;
+            }
+
+            .agency-box {
+                min-width: 160px;
+                padding: 16px;
+                font-size: 13px;
+            }
+
+            .holding-company {
+                min-width: 200px;
             }
 
             .level {
-                gap: 16px;
+                gap: 12px;
             }
 
             .tree-structure {
-                gap: 30px;
+                gap: 24px;
             }
 
             .legend-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 8px;
             }
 
             .simple-legend {
